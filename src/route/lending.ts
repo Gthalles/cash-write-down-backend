@@ -1,17 +1,8 @@
+import { Lending } from "../controller/lending";
 import { Router } from "express";
-
-/*
- * TODO: Lending Controller
- * TODO: Middleware
- */
-
 
 const router = Router();
 
-router.route("/lending")
-    .get((req, res) =>
-    {
-        res.send("Lending route works!!");
-    });
+router.get("/lending", new Lending().handle.bind(new Lending()));
 
 export default router;
