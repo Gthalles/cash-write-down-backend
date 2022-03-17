@@ -1,5 +1,6 @@
 import { Postgres } from "./postgres";
 
-class Lending extends Postgres {
+class Lending extends Postgres
+{
 
 }

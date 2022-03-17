@@ -1,5 +1,5 @@
-import express from "express";
 import Lending from "./lending";
+import express from "express";
 
 const app = express();
 

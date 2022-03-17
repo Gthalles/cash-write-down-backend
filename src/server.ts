@@ -1,7 +1,9 @@
 import app from "./app";
 
-// Route é responsável pela chamada do controller e envio da url para o app;
-// Controller é responsável pela chamada do Service e pelo envio da response;
-// Service é responsável por toda a regra de negócio (Validação, Schemas e etc);
+/*
+ * Route é responsável pela chamada do controller e envio da url para o app;
+ * Controller é responsável pela chamada do Service e pelo envio da response;
+ * Service é responsável por toda a regra de negócio (Validação, Schemas e etc);
+ */
 
-app.listen(3333);
+app.listen(3001);
