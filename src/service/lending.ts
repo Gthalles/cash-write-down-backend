@@ -1,8 +1,9 @@
 import { Lending } from "../client";
+import { RedisLending } from "../client";
 
 class LendingService {
-
-    public readonly database = new Lending();
+    public readonly postgresDB = new Lending();
+    public readonly redisDB = new RedisLending();
 
     public constructor () {
         this.execute();
@@ -10,7 +11,9 @@ class LendingService {
     }
 
     public async execute () {
-        await this.database.getLendings();
+        const lendings = await this.postgresDB.getLendings();
+
+        const RedisLending = await this.redisDB.getLendings();
     }
 }
 
