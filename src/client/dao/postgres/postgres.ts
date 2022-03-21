@@ -1,7 +1,9 @@
-import pg from "pg";
+import { Pool } from "pg";
 
 class Postgres {
-    public readonly client = new pg.Client({
+    private connection: any;
+
+    public readonly client = new Pool({
         user: "postgres",
         password: "postgres",
         host: "localhost",
@@ -10,17 +12,22 @@ class Postgres {
     });
 
     public async connect () {
-        await this.client.connect()
-            .then(() => {
-                console.log("connected");
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        try {
+            this.connection = await this.client.connect();
+            console.log("Conectando ao PostgreSQL!");
+
+        } catch (error) {
+            throw new Error("500: Erro ao tentar conectar ao BD!");
+        }
     }
 
     public async disconnect () {
-        await this.client.end();
+        try {
+            this.connection = await this.connection.release();
+        } catch (error) {
+            throw new Error("500: Erro ao tentar desconectar do BD!");
+        }
+        console.log("Desconectando do PostgreSQL!");
     }
 }
 

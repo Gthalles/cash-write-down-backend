@@ -1,15 +1,28 @@
-// TODO: IMPORT SERVICE
+import { Request, Response } from "express";
 import { LendingService } from "../service/index";
 
 class Lending {
     private readonly service = new LendingService();
 
-    public lendingService = new LendingService();
-
-    public handle (req: Request, res: Response) {
+    public async handle (req: Request, res: Response) {
         console.log("Lending Controller Works!!");
 
-        this.service.execute();
+        try {
+            const response = await this.service.execute(req.query);
+
+            return res.status(200).send(response);
+        } catch (error) {
+            const [
+                statusCode,
+                message
+            ] = error.message.split(":");
+
+            if (statusCode > 99 && statusCode < 600) {
+                return res.status(statusCode).send(message);
+            } else {
+                return res.status(500).send("Error in Controller!!");
+            }
+        }
     }
 }
 
