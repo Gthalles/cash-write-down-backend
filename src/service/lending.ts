@@ -1,16 +1,21 @@
-import { Lending } from "../client";
+import { Lending, RedisLending } from "../client";
 
 interface QueryParam {
     id: string;
 }
 class LendingService {
-    public readonly database = new Lending();
+    public readonly postgresDB = new Lending();
+
+    public readonly redisDB = new RedisLending();
 
     public async execute (queryParams: Partial<QueryParam>) {
         console.log("Lending Service Works!!");
 
         try {
-            return await this.database.getLendings(queryParams.id);
+            const RedisLending = this.redisDB.getLendings();
+            console.log(`Redis Lendings = ${RedisLending}`);
+
+            return await this.postgresDB.getLendings(queryParams.id);
         } catch (error) {
             const [ statusCode ] = error.message.split(":");
 
@@ -20,6 +25,7 @@ class LendingService {
                 throw new Error("500: Error in service!");
             }
         }
+
     }
 }
 
