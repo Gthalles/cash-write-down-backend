@@ -12,10 +12,11 @@ class LendingService {
         console.log("Lending Service Works!!");
 
         try {
-            const RedisLending = this.redisDB.getLendings();
-            console.log(`Redis Lendings = ${RedisLending}`);
 
-            return await this.postgresDB.getLendings(queryParams.id);
+            const redisResult = await this.redisDB.getLendings();
+            const result = await this.postgresDB.getLendings(queryParams.id);
+
+            return result;
         } catch (error) {
             const [ statusCode ] = error.message.split(":");
 
