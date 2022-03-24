@@ -10,11 +10,11 @@ class Lending extends Postgres {
             await this.connect();
             if (id) {
                 this.result = await this.client.query("SELECT * FROM lendings WHERE lender_name LIKE $1;", [ id ]);
-                this.disconnect();
 
             } else {
                 this.result = await this.client.query("SELECT * FROM lendings;");
             }
+            this.disconnect();
 
             return this.result.rows;
         } catch (error: unknown) {

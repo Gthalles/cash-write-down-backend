@@ -1,3 +1,3 @@
-export { Postgres, Lending } from "./dao";
+export { Postgres, Lending, Transaction } from "./dao";
 
 export { RedisDB, RedisLending } from "./dao";

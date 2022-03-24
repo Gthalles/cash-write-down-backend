@@ -1,13 +1,18 @@
 import { RedisDB } from "./redis";
 
-class RedisLending extends RedisDB { 
+class RedisLending extends RedisDB {
+    public result: string | null;
 
     public async getLendings () {
-        this.client.get("redis", (err, reply) => {
-            if (err) throw err;
+        try {
+            this.result = await this.client.get("redis");
+        } catch (err) {
+            return err;
+        }
 
-            console.log(reply);
-        });
+        console.log(this.result);
+
+        return this.result;
     }
 }
 

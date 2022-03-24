@@ -14,11 +14,11 @@ class Postgres {
     public async connect () {
         try {
             this.connection = await this.client.connect();
-            console.log("Conectando ao PostgreSQL!");
 
         } catch (error) {
             throw new Error("500: Erro ao tentar conectar ao BD!");
         }
+        console.log("Conectando ao PostgreSQL!");
     }
 
     public async disconnect () {
