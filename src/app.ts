@@ -17,9 +17,7 @@ class App {
         this.express.use(express.json());
 
         this.express.use(cors());
-
     }
-
 }
 
 export default new App().express;
