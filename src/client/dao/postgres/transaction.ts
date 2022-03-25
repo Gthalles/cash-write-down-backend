@@ -1,3 +1,4 @@
+import { ITransaction } from "../../../interface/transaction";
 import { Postgres } from "./postgres";
 
 class Transaction extends Postgres {
@@ -16,6 +17,23 @@ class Transaction extends Postgres {
             return this.result.rows;
         } catch (error) {
             throw new Error("503: Service Unvailable!");
+        }
+    }
+
+    public async addTransaction (data: ITransaction) {
+        try {
+            await this.connect();
+
+            const newTransaction = await this.client.query("INSERT INTO transactions VALUES ($1,$2,$3,$4);", [
+                data.id,
+                data.value,
+                data.subject,
+                data.date
+            ]);
+
+            return newTransaction.rows;
+        } catch (error) {
+            throw new Error("503: Unvailable Service!");
         }
     }
 }
