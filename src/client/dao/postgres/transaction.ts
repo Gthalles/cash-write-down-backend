@@ -33,7 +33,7 @@ class Transaction extends Postgres {
 
             return newTransaction.rows;
         } catch (error) {
-            throw new Error("503: Unvailable Service!");
+            throw new Error("503: Service Unvailable");
         }
     }
 }
