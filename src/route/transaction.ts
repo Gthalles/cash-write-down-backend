@@ -1,6 +1,9 @@
-import { AddTransactionController } from "../controller/addTransaction";
-import { DeleteTransactionController } from "../controller";
-import { GetTransactionController } from "../controller/getTransaction";
+import {
+    AddTransactionController,
+    DeleteTransactionController,
+    GetTransactionController,
+    UpdateTransactionController
+} from "../controller";
 import { Router } from "express";
 
 const router = Router();
@@ -10,5 +13,7 @@ router.get("/transactions", new GetTransactionController().handle.bind(new GetTr
 router.post("/transaction", new AddTransactionController().handle.bind(new AddTransactionController()));
 
 router.delete("/transaction/:id", new DeleteTransactionController().handle.bind(new DeleteTransactionController()));
+
+router.put("/transaction/:id", new UpdateTransactionController().handle.bind(new UpdateTransactionController()));
 
 export default router;
