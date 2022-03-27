@@ -10,12 +10,14 @@ class RedisDB {
     public async connect () {
         await this.client.connect().then(() => {
             console.log("Connected at redisDB");
-        }).catch((error) => {
-            console.log(error);
-        });
+        })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 
     public async disconnection () {
+        console.log("Disconnected at redisDB");
         await this.client.disconnect();
     }
 }
