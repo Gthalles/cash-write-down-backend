@@ -6,14 +6,14 @@ interface QueryParam {
 class LendingService {
     public readonly postgresDB = new Lending();
 
-    public readonly redisDB = new RedisLending();
+    // Public readonly redisDB = new RedisLending();
 
     public async execute (queryParams: Partial<QueryParam>) {
         console.log("Lending Service Works!!");
 
         try {
 
-            const redisResult = await this.redisDB.getLendings();
+            // Const redisResult = await this.redisDB.getLendings();
             const result = await this.postgresDB.getLendings(queryParams.id);
 
             return result;

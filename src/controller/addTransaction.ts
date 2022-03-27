@@ -20,9 +20,9 @@ class AddTransactionController {
 
             if (statusCode > 99 && statusCode < 600) {
                 return res.status(statusCode).send(message);
-            } else {
-                throw new Error("500: Error in Controller");
             }
+
+            return res.status(500).send("Error in Controller!");
         }
 
     }

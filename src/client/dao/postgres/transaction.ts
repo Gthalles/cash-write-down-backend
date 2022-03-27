@@ -33,7 +33,31 @@ class Transaction extends Postgres {
 
             return newTransaction.rows;
         } catch (error) {
-            throw new Error("503: Unvailable Service!");
+            throw new Error("503: Service Unvailable");
+        }
+    }
+
+    public async deleteTransaction (id: number) {
+        try {
+            await this.connect();
+
+            const transactionToDelete = await this.client.query("SELECT id FROM transactions WHERE id = $1;", [ id ]);
+
+            if ( transactionToDelete.rowCount === 0) {
+                throw new Error("404: Transaction not found");
+            }
+
+            const deletedTransaction = await this.client.query("DELETE FROM transactions WHERE id = $1;", [ id ]);
+
+            return deletedTransaction.rows;
+        } catch (error: any) {
+            const [ statusCode ] = error.message.split(":");
+
+            if (statusCode > 99 && statusCode < 600) {
+                throw error;
+            }
+
+            throw new Error("503: Service Unvailable");
         }
     }
 }
