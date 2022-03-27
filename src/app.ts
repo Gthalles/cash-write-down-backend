@@ -7,17 +7,13 @@ class App {
 
     public constructor () {
         this.express = express();
-
         this.express.use(routes);
-
-        this.middlewares();
     }
 
     private middlewares () {
         this.express.use(express.json());
-
         this.express.use(cors());
     }
 }
 
-export default new App().express;
+export { App };

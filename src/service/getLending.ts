@@ -3,7 +3,7 @@ import { Lending, RedisLending } from "../client";
 interface QueryParam {
     id: string;
 }
-class LendingService {
+class GetLendingService {
     public readonly postgresDB = new Lending();
 
     // Public readonly redisDB = new RedisLending();
@@ -23,11 +23,10 @@ class LendingService {
             if (statusCode > 99 && statusCode < 600) {
                 throw error;
             } else {
-                throw new Error("500: Error in service!");
+                throw new Error("500: Unexpected error on list lending");
             }
         }
-
     }
 }
 
-export { LendingService };
+export { GetLendingService };

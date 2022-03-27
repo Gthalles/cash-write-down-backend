@@ -9,9 +9,7 @@ class AddTransactionController {
         try {
             await this.service.execute(req.body);
 
-            console.log("Transaction criada com sucesso!");
-
-            return res.status(200).end();
+            return res.status(200).send("Transaction has been created");
         } catch (error: any) {
             const [
                 statusCode,
@@ -22,9 +20,8 @@ class AddTransactionController {
                 return res.status(statusCode).send(message);
             }
 
-            return res.status(500).send("Error in Controller!");
+            return res.status(500).send("Unexpected error creating transaction");
         }
-
     }
 }
 

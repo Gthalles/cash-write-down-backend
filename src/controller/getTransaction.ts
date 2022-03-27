@@ -19,7 +19,7 @@ class GetTransactionController {
             if (statusCode > 99 && statusCode < 600) {
                 res.status(statusCode).send(message);
             } else {
-                res.status(500).send("Error in Controller!");
+                res.status(500).send("Unexpected error getting transaction");
             }
         }
     }
