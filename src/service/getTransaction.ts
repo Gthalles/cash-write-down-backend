@@ -22,7 +22,7 @@ class GetTransactionService {
                 console.log(message);
                 throw error;
             } else {
-                throw new Error("500: Error in Service!");
+                throw new Error("500: Unexpected error getting transaction");
             }
         }
     }

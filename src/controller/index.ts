@@ -1,4 +1,4 @@
-export { Lending } from "./lending";
+export { GetLendingController } from "./getLending";
 
 export { GetTransactionController } from "./getTransaction";
 

@@ -1,9 +1,10 @@
 /* eslint-disable max-len */
 import { ITransaction } from "../../../interface/transaction";
 import { Postgres } from "./postgres";
+import { QueryResult } from "pg";
 
 class Transaction extends Postgres {
-    private result: any;
+    private result: QueryResult<ITransaction>;
 
     public async getTransactions (name: string) {
         try {

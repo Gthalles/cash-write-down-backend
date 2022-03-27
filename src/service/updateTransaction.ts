@@ -1,18 +1,12 @@
+import { ITransaction } from "../interface/transaction";
 import { Transaction } from "../client";
-
-interface IParams {
-    id: number;
-    value: number;
-    subject: string;
-    date: string;
-}
 
 class UpdateTransactionService {
     public readonly postgreDB = new Transaction();
 
-    public async execute (id: number, value?: number, subject?: string, date?: string) {
+    public async execute (id: number, values: Partial<ITransaction>) {
         try {
-            const result = await this.postgreDB.updateTransaction(id, value, subject, date);
+            const result = await this.postgreDB.updateTransaction(id, values.value, values.subject, values.date);
 
             return result;
         } catch (error) {
@@ -22,10 +16,9 @@ class UpdateTransactionService {
                 throw error;
             }
 
-            throw new Error("500: Error in service");
+            throw new Error("500: Unexpected error on update transaction.");
         }
     }
-
 }
 
 export { UpdateTransactionService };

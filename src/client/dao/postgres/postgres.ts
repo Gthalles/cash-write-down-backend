@@ -1,8 +1,9 @@
-import { Pool } from "pg";
+import { Pool, PoolClient } from "pg";
 
 class Postgres {
-    private connection: any;
+    private connection: PoolClient;
 
+    // FIXME variáveis de conexão com o banco de dados devem estar em um arquivo .env
     public readonly client = new Pool({
         user: "postgres",
         password: "postgres",
@@ -23,7 +24,7 @@ class Postgres {
 
     public async disconnect () {
         try {
-            this.connection = await this.connection.release();
+            await this.connection.release();
         } catch (error) {
             throw new Error("500: Erro ao tentar desconectar do BD!");
         }

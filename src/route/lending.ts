@@ -1,8 +1,8 @@
-import { Lending } from "../controller/lending";
+import { GetLendingController } from "../controller";
 import { Router } from "express";
 
 const router = Router();
 
-router.get("/lending", new Lending().handle.bind(new Lending()));
+router.get("/lending", new GetLendingController().handle.bind(new GetLendingController()));
 
 export default router;

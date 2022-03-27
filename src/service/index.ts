@@ -1,4 +1,4 @@
-export { LendingService } from "./lending";
+export { GetLendingService } from "./getLending";
 
 export { GetTransactionService } from "./getTransaction";
 

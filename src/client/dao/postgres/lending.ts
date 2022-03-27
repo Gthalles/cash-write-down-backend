@@ -3,7 +3,7 @@ import { Postgres } from "./postgres";
 class Lending extends Postgres {
     private result: any;
 
-    public async getLendings (id?: string) {
+    public async getLendings (id: string = undefined) {
         console.log("GetLendings() with postgres works!!");
 
         try {

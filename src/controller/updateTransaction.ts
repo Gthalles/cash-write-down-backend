@@ -7,7 +7,7 @@ class UpdateTransactionController {
     public async handle (req: Request, res: Response) {
         try {
             // eslint-disable-next-line max-len
-            const response = this.service.execute(Number(req.params.id), req.body.value, req.body.subject, req.body.date);
+            const response = this.service.execute(Number(req.params.id), req.body);
 
             return res.status(200).send(response);
         } catch (error) {
